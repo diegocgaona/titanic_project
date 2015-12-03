@@ -26,52 +26,58 @@ all_data$Age[is.na(all_data$Age)] <- predict(predicted_age, all_data[is.na(all_d
 ## Modifying data types
 all_data$Survived <- as.factor(all_data$Survived)
 all_data$Pclass <- as.factor(all_data$Pclass)
+all_data$family_size <- as.factor(all_data$family_size)
 
 ## Creating a Random Forest model
 set.seed(155)
-my_model <- randomForest(as.factor(Survived) ~ as.numeric(all_data$Pclass) + as.factor(all_data$Sex) * as.numeric(all_data$Age) + as.integer(all_data$SibSp) 
-                          + as.integer(all_data$Parch) + as.numeric(all_data$Fare) + as.factor(all_data$Embarked) + as.factor(all_data$Title), 
-                          data = all_data, importance = TRUE, ntree = 15000)
-my_prediction <- predict(my_model, newdata = all_data)
-my_solution <- data.frame(PassengerId = all_data$PassengerId, Survived = my_prediction)
-# Confusion Matrix
-modelconfusion <- confusionMatrix(all_data$Survived, my_solution$Survived)$overall
-modelconfusion
+my_model <- randomForest(Survived ~ Pclass + Sex + Title + Age + family_size + Fare, 
+                         data = all_data, localImp = TRUE, ntree = 15000, 
+                         proximity = TRUE, oob.times = 60, nodesize = .3)
 
-my_model <- randomForest(Survived ~ Pclass + Sex * Age + SibSp 
-                         + Parch + Fare + Embarked + Title, 
-                         data = all_data, importance = TRUE, ntree = 15000)
+varImpPlot(my_model)
 
-predictions <- predict(my_model, newdata = test_new[3,c(3:14)], type = "prob")
+saveRDS(my_model, "my_model.rds")
+
 predictions <- predict(my_model, newdata = teste, type = "prob")
 
 
-predictions <- predict(my_model, data.frame(c(Pclass = input$Pclass, Sex = input$Sex, Age = input$Age, SibSp = input$SibSp, 
-                                               Parch = input$Parch, Fare = input$Fare, Embarked = input$Embarked, Title = input$Title)))
-
-teste <- all_data[1,]
-teste$Pclass <- factor("3")
+preddf <- data.frame(
+      Pclass = input$Pclass,
+      Sex = input$Sex,
+      Age = input$Age,
+      SibSp = input$SibSp,
+      Parch = input$Parch,
+      Fare = input$Fare,
+      Embarked = input$Embarked,
+      Title = input$Title
+)
+levels(preddf$Sex) <- levels(all_data$Sex)
+levels(preddf$Embarked) <- levels(all_data$Embarked)
+levels(preddf$Title) <- levels(all_data$Title)
+preddf$Pclass <- as.factor(preddf$Pclass)
+preddf$SibSp <- as.integer(preddf$SibSp)
+preddf$Parch <- as.integer(preddf$Parch)
+levels(preddf$Pclass) <- levels(all_data$Pclass)
 
 
 teste <- data.frame(
-      Pclass = 3, 
+      Pclass = 1, 
       Sex = "male", 
-      Age = 30, 
-      SibSp = 5, 
-      Parch = 8, 
-      Fare = 1500, 
-      Embarked = "C", 
-      Title = "Master")
+      Age = 29, 
+      Fare = 180, 
+      Title = "Mr",
+      family_size = "1")
 levels(teste$Sex) <- levels(all_data$Sex)
-levels(teste$Embarked) <- levels(all_data$Embarked)
+levels(teste$family_size) <- levels(all_data$family_size)
+teste$family_size <- as.factor(teste$family_size)
 levels(teste$Title) <- levels(all_data$Title)
 teste$Pclass <- as.factor(teste$Pclass)
-teste$SibSp <- as.integer(teste$SibSp)
-teste$Parch <- as.integer(teste$Parch)
 levels(teste$Pclass) <- levels(all_data$Pclass)
+saveRDS(teste[1,], "datamodel.RDS")
+str(readRDS("datamodel.RDS"))
 
 
-my_tree_five <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked + Title, 
-                      data = all_data, 
-                      method = "anova" )
-predictions <- predict(my_tree_five, newdata = teste)
+
+      
+      shinyapps::deployApp()
+
