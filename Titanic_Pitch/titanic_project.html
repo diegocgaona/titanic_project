@@ -1,56 +1,82 @@
----
-title       : Titanic Shiny App Pitch
-subtitle    : A Course Project
-author      : Diego Gaona
-job         : Data Science Coursera - Developing Data Products
-framework   : revealjs        # {io2012, html5slides, shower, dzslides, revealjs ...}
-revealjs    : {transition: fade, center: "false"} # none/fade/slide/convex/concave/zoom} 
-highlighter : highlight.js  # {highlight.js, prettify, highlight}
-hitheme     : moon # Sky - Beige - Simple - Serif - Night - Default - Solarized - Moon
-widgets     : []            # {mathjax, quiz, bootstrap}
-ext_widgets : {rCharts: libraries/nvd3}
-mode        : selfcontained # {standalone, draft, selfcontained}
-knit        : slidify::knit2slides
----
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Titanic Shiny App Pitch</title>
+  <meta name="description" content="">
+  <meta name="author" content="Diego Gaona">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/reveal.min.css">
+  <link rel="stylesheet" href="libraries/frameworks/revealjs/css/theme/moon.css" id="theme">
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/.css" id="theme"/>
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/rNVD3.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
 
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->  <link rel="stylesheet" href = "assets/css/ribbons.css">
 
-## Titanic Survival Probabilities
-<div style="text-align: center;align=center">
+    <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script src="libraries/widgets/nvd3/js/jquery-1.8.2.min.js"></script>
+<script src="libraries/widgets/nvd3/js/d3.v3.min.js"></script>
+<script src="libraries/widgets/nvd3/js/nv.d3.min-new.js"></script>
+<script src="libraries/widgets/nvd3/js/fisheye.js"></script>
+
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class='' data-state='' id='slide-1'>
+  <h2>Titanic Survival Probabilities</h2>
+  <div style="text-align: center;align=center">
 <p>A Course Project for Developing Data Products<br>
 From Coursera and Johns Hopkins University</p><br><br><br>
 </div>
+
 <h3>Creator</h3>
+
 <h2><a href="https://linkedin.com/in/diegocgaona">Diego Gaona</a></h2>
 
---- .class #intro 
-
-## Introduction
-<div style="text-align: left;">
+  
+</section>
+<section class='class' data-state='' id='intro'>
+  <h2>Introduction</h2>
+  <div style="text-align: left;">
 <p>The sinking of the RMS Titanic is one of the most infamous shipwrecks in history. </p><br>
 <p>On April 15, 1912, during her maiden voyage, the Titanic sank after colliding with an iceberg, killing 1502 out of 2224 passengers and crew.</p><br>
 <p>This sensational tragedy shocked the international community and led to better safety regulations for ships.</p>
 
 </div>
 
---- .class #plot1
-
-## Exploration
-<div style="text-align: left;">
+  
+</section>
+<section class='class' data-state='' id='plot1'>
+  <h2>Exploration</h2>
+  <div style="text-align: left;">
 In this plot we see the deaths related to age and ticket fare, some of the variable which infuenced the chance of surviving. 
 </div>
+
 <div style="background:#cccccc;">
-<link rel='stylesheet' href=//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min.css>
-<script type='text/javascript' src=//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js></script>
-<script type='text/javascript' src=//d3js.org/d3.v3.min.js></script>
-<script type='text/javascript' src=//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min.js></script>
-<script type='text/javascript' src=//nvd3.org/assets/lib/fisheye.js></script> 
+<p><link rel='stylesheet' href="libraries/widgets/nvd3/css/nv.d3.min.css"></p>
+
+<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script type='text/javascript' src="http://d3js.org/d3.v3.min.js"></script>
+
+<script type='text/javascript' src="http://cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min.js"></script>
+
+<script type='text/javascript' src="http://nvd3.org/assets/lib/fisheye.js"></script> 
  <style>
   .rChart {
     display: block;
     margin-left: auto; 
     margin-right: auto;
-    width: 960px;
-    height: 650px;
+    width: 850px;
+    height: 600px;
   }  
   </style>
 <div id = 'chart17542f53fd7' class = 'rChart nvd3'></div>
@@ -61,8 +87,8 @@ In this plot we see the deaths related to age and ticket fare, some of the varia
     function drawchart17542f53fd7(){  
       var opts = {
  "dom": "chart17542f53fd7",
-"width":    960,
-"height":    650,
+"width":    800,
+"height":    580,
 "x": "Age",
 "y": "Ticket_Fare",
 "group": "Life",
@@ -13213,23 +13239,64 @@ In this plot we see the deaths related to age and ticket fare, some of the varia
 </script>
 </div>
 
---- .class #challenge
-
-## The challenge
-<div style="text-align: left;">
+  
+</section>
+<section class='class' data-state='' id='challenge'>
+  <h2>The challenge</h2>
+  <div style="text-align: left;">
 <p>My challenge, is to do a analysis of what sorts of people were likely to survive. Using machine learning models to predict how much chance each type of passanger has to survive.</p><br>
 
 <p>This work is based on Kaggle Titanic: Machine Learning from Disaster competition and The Kaggle R Tutorial on Machine Learning from DataCamp</p>
 </div>
 
---- .class #app
-
-## The Shiny App
-<div style="text-align: left;">
+  
+</section>
+<section class='class' data-state='' id='app'>
+  <h2>The Shiny App</h2>
+  <div style="text-align: left;">
 <p>To show how this works, I made a App, running on Shinyapp.io servers, is very easy to use and you can try to change the variables and see the results.</p><br>
 
 <p>Who have more chances to surive?</p>
 
 <p>Try the app on: <a href="https://diegogaona.shinyapps.io/titanic_project">Titanic Project App</a></p>
 </div>
-!['Shiny App']("/img/print.jpg")
+
+<p><a href="https://diegogaona.shinyapps.io/titanic_project"><img src="img/print.jpg" alt="Shiny App"></a></p>
+
+  
+</section>
+    </div>
+  </div>
+</body>
+  <script src="libraries/frameworks/revealjs/lib/js/head.min.js"></script>
+  <script src="libraries/frameworks/revealjs/js/reveal.min.js"></script>
+  <script>
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: false,
+    theme: Reveal.getQueryHash().theme || 'default', 
+    transition: Reveal.getQueryHash().transition || 'fade', 
+    dependencies: [
+    // Cross-browser shim that fully implements classList -
+    // https://github.com/eligrey/classList.js/
+      { src: 'libraries/frameworks/revealjs/lib/js/classList.js', condition: function() { return !document.body.classList;}},
+      // Zoom in and out with Alt+click
+      { src: 'libraries/frameworks/revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Speaker notes
+      { src: 'libraries/frameworks/revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+      // Remote control your reveal.js presentation using a touch device
+      //{ src: 'libraries/frameworks/revealjs/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+      ]
+  });
+  </script>  
+<!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+ 
+
+</html>
