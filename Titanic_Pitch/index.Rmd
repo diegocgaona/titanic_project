@@ -45,9 +45,8 @@ From Coursera and Johns Hopkins University</p><br><br><br>
 
 --- .class #intro 
 
-## Introduction
+## THE SINKINNG OF THE RMS TITANIC
 <div style="text-align: left;">
-<p>The sinking of the RMS Titanic is one of the most infamous shipwrecks in history. </p><br>
 <p>On April 15, 1912, during her maiden voyage, the Titanic sank after colliding with an iceberg, killing 1502 out of 2224 passengers and crew.</p><br>
 <p>This sensational tragedy shocked the international community and led to better safety regulations for ships.</p>
 
@@ -55,7 +54,7 @@ From Coursera and Johns Hopkins University</p><br><br><br>
 
 --- .class #plot1
 
-## Exploration
+## A LITTLE DATA VISUALIZATION
 <div style="text-align: left;">
 In this plot we see the deaths related to age and ticket fare, some of the variable which infuenced the chance of surviving. 
 </div>
@@ -65,17 +64,18 @@ n1 <- nPlot(Ticket_Fare ~ Age, group = 'Life', data = plot_data, type = 'scatter
 n1$xAxis(axisLabel = 'Age')
 n1$yAxis(axisLabel = 'Ticket Fare')
 #n1$addControls("group", value = "Life", values = names(plot_data[,c(1,2,3,6,7,8)]))
+n1$chart(color = "#! (['purple', '#13daec']) !#")
 n1$show('inline', include_assets = TRUE, cdn = TRUE)
 ```  
 </div>
 
 --- .class #challenge
 
-## The challenge
+## The Machine Learning Challenge
 <div style="text-align: left;">
 <p>My challenge, is to do a analysis of what sorts of people were likely to survive. Using machine learning models to predict how much chance each type of passanger has to survive.</p><br>
 
-<p>This work is based on Kaggle Titanic: Machine Learning from Disaster competition and The Kaggle R Tutorial on Machine Learning from DataCamp</p>
+<p>This work is based on <a href="https://www.kaggle.com/c/titanic">Kaggle Titanic: Machine Learning from Disaster competition</a> and <a href="https://www.datacamp.com/courses/kaggle-tutorial-on-machine-learing-the-sinking-of-the-titanic">The Kaggle R Tutorial on Machine Learning from DataCamp</a></p>
 </div>
 
 --- .class #app
